@@ -8,3 +8,4 @@ Conforme prometido segue os componente criandos no delphi em Runtime
 * Create Checbox
 * Create Label
 * Create Memo
+* Create Radion Button
