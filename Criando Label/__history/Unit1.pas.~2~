@@ -1,0 +1,64 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TfrmHome = class(TForm)
+    Button1: TButton;
+    ScrollBox1: TScrollBox;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+    procedure OnCheckBox(Sender:TObject);
+  public
+    { Public declarations }
+  end;
+
+var
+  frmHome: TfrmHome;
+  iCount: Integer;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmHome.Button1Click(Sender: TObject);
+var
+  LLabel : TLabel;
+begin
+  LLabel := TLabel.Create(Self);
+
+  inc(iCount);
+
+  LLabel.Parent := ScrollBox1;
+  LLabel.Name := 'Nome_' + iCount.ToString;
+
+  LLabel.Height := 70;
+//  LLabel.Width := 400;
+//  LLabel.Left := 212;
+
+  LLabel.Top := ScrollBox1.Height;
+  LLabel.Align := alTop;
+
+  LLabel.Caption := 'Criando CheckBox ' + iCount.ToString;
+  LLabel.Font.Size := 20;
+  LLabel.Checked := true;
+
+  LLabel.OnClick := OnCheckBox;
+end;
+
+procedure TfrmHome.OnCheckBox(Sender: TObject);
+begin
+  ShowMessage((sender as TCheckBox).Name);
+
+  if (TCheckBox(Sender).Checked) then
+    TCheckBox(Sender).Caption := 'true'
+  else
+    TCheckBox(Sender).Caption := 'false';
+end;
+
+end.
